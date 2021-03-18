@@ -1,0 +1,34 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "#dataSchema",
+    "type": "object",
+    "required": [
+        "type",
+        "processing",
+        "format"
+    ],
+    "properties": {
+        "type": {
+            "type": "string",
+            "enum": [
+                "bounded",
+                "unbounded"
+            ]
+        },
+        "processing": {
+            "type": "string",
+            "enum": [
+                "batch",
+                "event"
+            ]
+        },
+        "format": {
+            "oneOf": [
+                {"$ref": "xml.json#xml"},
+                {"$ref": "csv.json#csv"},
+                {"$ref": "json.json#json"}
+            ]
+        }
+    },
+    "additionalProperties": false
+}

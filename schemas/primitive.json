@@ -1,0 +1,19 @@
+{
+    "primitive": [
+        null,
+        "boolean",
+        "int",
+        "long",
+        "float",
+        "double",
+        "bytes",
+        "string"
+    ],
+    "complex": [
+        "record",
+        "enum",
+        "array",
+        "map",
+        "fixed"
+    ]
+}

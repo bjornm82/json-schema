@@ -1,0 +1,45 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "#postgres",
+	"type": "object",
+    "required": [
+        "type",
+        "name",
+        "username",
+        "password",
+        "database",
+        "table",
+        "host",
+        "port"
+    ],
+    "properties": {
+        "type": {
+            "type": "string",
+            "enum": [
+                "postgres"
+            ]
+        },
+        "name": {
+            "type": "string"
+        },
+        "username": {
+            "type": "string"
+        },
+        "password": {
+            "type": "string"
+        },
+        "database": {
+            "type": "string"
+        },
+        "table": {
+            "type": "string"
+        },
+        "host": {
+            "type": "string"
+        },
+        "port": {
+            "type": "integer"
+        }
+	},
+	"additionalProperties": false
+}

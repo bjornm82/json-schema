@@ -1,0 +1,25 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "#fixed",
+    "type": "object",
+    "required": [
+        "type",
+        "name",
+        "size"
+    ],
+    "properties": {
+        "type": {
+            "type": "string",
+            "enum": [
+                "fixed"
+            ]
+        },
+        "name": {
+            "type": "string"
+        },
+        "size": {
+            "type": "integer"
+        }
+    },
+    "additionalProperties": false
+}

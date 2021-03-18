@@ -1,0 +1,37 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "#array",
+    "type": "array",
+    "required": [
+        "type"
+    ],
+    "items": {
+        "oneOf": [
+            {
+                "$ref": "enum.json#enum"
+            },
+            {
+                "$ref": "fixed.json#fixed"
+            },
+            {
+                "$ref": "string.json#string"
+            },
+            {
+                "$ref": "boolean.json#boolean"
+            },
+            {
+                "$ref": "map.json#map"
+            },
+            {
+                "$ref": "int.json#int"
+            },
+            {
+                "$ref": "long.json#long"
+            },
+            {
+                "$ref": "null.json#null"
+            }
+        ]
+    },
+    "additionalProperties": false
+}

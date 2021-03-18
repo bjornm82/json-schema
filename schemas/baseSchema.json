@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "#baseSchema",
+  "title": "schema for an source entry",
+  "type": "object",
+  "required": [
+    "config",
+    "data",
+    "fields"
+  ],
+  "properties": {
+    "fields": { "$ref": "fieldSchema.json#fieldSchema" },
+    "data": { "$ref": "dataSchema.json#dataSchema" },
+    "config": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "s3.json#s3"
+        },
+        {
+          "$ref": "postgres.json#postgres"
+        },
+        {
+          "$ref": "http.json#http"
+        }
+      ]
+    }
+  },
+  "additionalProperties": false
+}

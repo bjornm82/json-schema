@@ -1,0 +1,33 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "#http",
+	"type": "object",
+    "required": [
+        "type",
+        "name",
+        "host",
+        "path",
+        "query"
+    ],
+    "properties": {
+        "type": {
+            "type": "string",
+            "enum": [
+                "http"
+            ]
+        },
+        "name": {
+            "type": "string"
+        },
+        "host": {
+            "type": "string"
+        },
+        "path": {
+            "type": "string"
+        },
+        "query": {
+            "type": "string"
+        }
+	},
+	"additionalProperties": false
+}
