@@ -9,8 +9,7 @@
         "password",
         "database",
         "table",
-        "host",
-        "port"
+        "host"
     ],
     "properties": {
         "type": {
@@ -35,10 +34,14 @@
             "type": "string"
         },
         "host": {
-            "type": "string"
+            "type": "string",
+            "format": "uri"
         },
         "port": {
-            "type": "integer"
+            "type": "integer",
+            "maxLength": 5,
+            "minLength": 4,
+            "default": 5432
         }
 	},
 	"additionalProperties": false

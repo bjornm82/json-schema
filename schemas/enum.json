@@ -9,27 +9,21 @@
     ],
     "properties": {
         "type": {
-            "$id": "#/properties/type",
             "type": "string",
             "enum": [
                 "enum"
             ]
         },
         "name": {
-            "$id": "#/properties/name",
             "type": "string"
         },
         "symbols": {
-            "$id": "#/properties/symbols",
             "type": "array",
             "additionalItems": false,
             "items": {
-                "$id": "#/properties/symbols/items",
-                "anyOf": [
-                    {
-                        "$id": "#/properties/symbols/items/anyOf/0",
-                        "type": "string"
-                    }
+                "oneOf": [
+                    { "type": "string" },
+                    { "type": "integer" }
                 ]
             }
         }

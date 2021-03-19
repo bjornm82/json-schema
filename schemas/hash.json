@@ -1,0 +1,27 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "#hash",
+    "type": "object",
+    "required": [
+        "type",
+        "hash_type"
+    ],
+    "properties": {
+        "type": {
+            "type": "string",
+            "enum": [
+                "hash"
+            ]
+        },
+        "hash_type": {
+            "type": "string",
+            "enum": [
+                "sha256",
+                "sha512",
+                "md5"
+            ],
+            "default": "sha256"
+        }
+    },
+    "additionalProperties": false
+}

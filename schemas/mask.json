@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "#mask",
+    "type": "object",
+    "required": [
+        "type",
+		"chars_to_mask",
+		"masking_char"
+    ],
+    "properties": {
+        "type": {
+            "type": "string",
+            "enum": [
+                "mask"
+            ]
+        },
+        "chars_to_mask": {
+            "type": "integer"
+        },
+        "masking_char": {
+            "type": "string",
+            "maxLength": 1
+        },
+        "from_end": {
+            "type": "boolean",
+            "default": false
+        }
+    },
+    "additionalProperties": false
+}

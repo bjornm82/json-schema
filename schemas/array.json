@@ -30,8 +30,16 @@
             },
             {
                 "$ref": "null.json#null"
+            },
+            {
+                "$ref": "double.json#double"
+            },
+            {
+                "$ref": "float.json#float"
             }
         ]
     },
+    "minItems": 1,
+    "uniqueItems": true,
     "additionalProperties": false
 }

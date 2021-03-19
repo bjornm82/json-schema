@@ -24,16 +24,16 @@ var postgres = `{
 		"password": "postgres",
 		"database": "postgres",
 		"table": "postgres",
-		"host": "postgres",
+		"host": "http://postgres.com",
 		"port": 1234
 	},
 	"fields": [{
 			"name": "serverProtocol",
-			"type": ["null", "null", "string"]
+			"type": ["null", "string"]
 		},
 		{
 			"name": "serverProtocol",
-			"type": ["string", "string"]
+			"type": ["string"]
 		},
 		{
 			"name": "serverHash",
@@ -54,7 +54,7 @@ var postgres = `{
 				"values": "bytes"
 			}, {
 				"type": "map",
-				"values": "bytes"
+				"values": "bytes2"
 			}]
 		},
 		{

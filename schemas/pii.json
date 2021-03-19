@@ -1,0 +1,60 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "#pii",
+    "type": "array",
+    "required": [
+        "type"
+    ],
+    "items": {
+        "type": "object",
+        "required": [
+            "type",
+            "language",
+            "score",
+            "anonymise"
+        ],
+        "properties": {
+            "type": {
+                "type": "string",
+                "enum": [
+                    "DATE_TIME",
+                    "CREDIT_CARD",
+                    "DOMAIN_NAME",
+                    "IP_ADDRESS",
+                    "EMAIL_ADDRESS",
+                    "IBAN_CODE",
+                    "LOCATION",
+                    "LATITUDE",
+                    "LONGITUDE",
+                    "PERSON",
+                    "PHONE_NUMBER",
+                    "US_BANK_NUMBER",
+                    "US_DRIVER_LICENCE",
+                    "US_PASSPORT",
+                    "NL_DRIVER_LICENCE",
+                    "NL_PASSPORT"
+                ]
+            },
+            "language": {
+                "type": "string",
+                "enum": [
+                    "nl",
+                    "en"
+                ]
+            },
+            "score": {
+                "type": "number"
+            },
+            "anonymise": {
+                "oneOf": [
+                    { "$ref": "none.json#none" },
+                    { "$ref": "replace.json#replace" },
+                    { "$ref": "redact.json#redact" },
+                    { "$ref": "hash.json#hash" },
+                    { "$ref": "mask.json#mask" }
+                ]
+            }
+        },
+        "additionalProperties": false
+    }
+}

@@ -11,6 +11,9 @@
             "type": {
                 "oneOf": [
                     {
+                        "$ref": "array.json#array"
+                    },
+                    {
                         "$ref": "enum.json#enum"
                     },
                     {
@@ -23,9 +26,6 @@
                         "$ref": "boolean.json#boolean"
                     },
                     {
-                        "$ref": "array.json#array"
-                    },
-                    {
                         "$ref": "map.json#map"
                     },
                     {
@@ -36,13 +36,23 @@
                     },
                     {
                         "$ref": "null.json#null"
+                    },
+                    {
+                        "$ref": "double.json#double"
+                    },
+                    {
+                        "$ref": "float.json#float"
                     }
                 ]
+            },
+            "expectations": {
+                "type": "object"
             }
         },
         "required": [
             "name",
             "type"
-        ]
+        ],
+        "additionalProperties": false
     }
 }

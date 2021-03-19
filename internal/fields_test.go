@@ -9,11 +9,11 @@ import (
 var fields = `[
 		{
 			"name": "serverProtocol",
-			"type": ["null", "null", "string"]
+			"type": ["null", "string", "int"]
 		},
 		{
 			"name": "serverProtocol",
-			"type": ["string", "string"]
+			"type": ["string", "boolean", "double"]
 		},
 		{
 			"name": "serverHash",
@@ -24,7 +24,10 @@ var fields = `[
 			},{
 				"type": "enum",
 				"name": "HandshakeMatch",
-				"symbols": ["BOTH", "CLIENT", "NONE"]
+				"symbols": ["BOTH", 1, "NONE"]
+			}, "string", {
+				"type": "map",
+				"values": "bytes"
 			}]
 		},
 		{
@@ -34,7 +37,7 @@ var fields = `[
 				"values": "bytes"
 			}, {
 				"type": "map",
-				"values": "bytes"
+				"values": "other"
 			}]
 		},
 		{
@@ -49,12 +52,20 @@ var fields = `[
 			"name": "match",
 			"type": {
 				"type": "enum",
-				"name": "HandshakeMatch",
-				"symbols": ["BOTH", "CLIENT", "NONE"]
+				"name": "emails",
+				"symbols": ["perosnal", "company", "other"]
 			}
 		},
 		{
-			"name": "serverProtocol",
+			"name": "match",
+			"type": {
+				"type": "enum",
+				"name": "HandshakeMatch",
+				"symbols": [2, 1, 4]
+			}
+		},
+		{
+			"name": "email",
 			"type": "string"
 		},
 		{
@@ -64,6 +75,14 @@ var fields = `[
 		{
 			"name": "serverProtocol",
 			"type": "null"
+		},
+		{
+			"name": "serverProtocol",
+			"type": "float"
+		},
+		{
+			"name": "serverProtocol",
+			"type": "double"
 		},
 		{
 			"name": "serverProtocol",
@@ -96,5 +115,5 @@ var fields = `[
 
 func TestSchema(t *testing.T) {
 	Schema(fields)
-	assert.Equal(t, "", "1")
+	assert.Equal(t, "", "")
 }

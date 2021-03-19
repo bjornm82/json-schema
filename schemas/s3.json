@@ -24,16 +24,19 @@
             "type": "string"
         },
         "endpoint": {
-            "type": "string"
+            "type": "string",
+            "format": "uri"
         },
         "bucket": {
             "type": "string"
         },
         "key": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
         },
         "secret": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
         }
 	},
 	"additionalProperties": false
