@@ -14,7 +14,8 @@
             ]
         },
         "delimeter": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 1
         }
     },
     "additionalProperties": false

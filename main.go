@@ -115,29 +115,6 @@ var postgres = `{
 	]
 }`
 
-var s3 = `{
-	  "config":
-		  {
-			"type": "s3",
-			"name": "s3",
-			"path": "s3",
-			"bucket": "s3",
-			"key": "s3",
-			"secret": "s3"
-		}
-	}`
-
-var http = `{
-		"config":
-			{
-				"type": "http",
-				"name": "http",
-				"host": "http",
-				"path": "http",
-				"query": "http"
-		  }
-	  }`
-
 type Evaluator interface {
 	evaluate() bool
 }
@@ -159,20 +136,6 @@ func (s *S3) evaluate() bool {
 	return true
 }
 
-type Postgres struct {
-	Name     string `json:"name"`
-	Username string `json:"username"`
-	Password string `json:"password"`
-	Database string `json:"database"`
-	Table    string `json:"table"`
-	Host     string `json:"host"`
-	Port     int    `json:"port"`
-}
-
-func (p *Postgres) evaluate() bool {
-	return true
-}
-
 type Http struct {
 	Name  string `json:"name"`
 	Host  string `json:"host"`
@@ -185,7 +148,7 @@ func (h *Http) evaluate() bool {
 }
 
 func main() {
-	schemaLoader := gojsonschema.NewReferenceLoader("file:///Users/bmooijekind/Projects/go/src/github.com/bjornm82/json-schema/schemas/baseSchema.json")
+	schemaLoader := gojsonschema.NewReferenceLoader("file:///Users/bmooijekind/Projects/go/src/github.com/bjornm82/json-schema/schemas/source.json")
 	documentLoader := gojsonschema.NewStringLoader(postgres)
 
 	result, err := gojsonschema.Validate(schemaLoader, documentLoader)
@@ -208,13 +171,6 @@ func main() {
 	}
 
 	switch m.Storage["type"] {
-	case "postgres":
-		var p Postgres
-		if err := mapstructure.Decode(m.Storage, &p); err != nil {
-			panic(err)
-		}
-		m.Source = &p
-		fmt.Printf("%T %+v\n", p, p)
 	case "http":
 		var h Http
 		if err := mapstructure.Decode(m.Storage, &h); err != nil {

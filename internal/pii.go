@@ -2,38 +2,88 @@ package internal
 
 import (
 	"encoding/json"
-	"fmt"
-	"log"
 
-	"github.com/xeipuuv/gojsonschema"
+	"github.com/mitchellh/mapstructure"
 )
 
-type Pii struct {
+const (
+	PiiSchemaPath = "file://../schemas/pii.json"
+)
+
+type Pii []PiiObject
+
+type PiiObject struct {
+	Type      string
+	Score     float64
+	Language  string
+	Anonymise map[string]interface{}
+	Source    Marhaller
 }
 
-func (a *Pii) Unmarshal(b []byte) error {
-	return json.Unmarshal(b, a)
+type Marhaller interface {
+	Marshal() ([]byte, error)
 }
 
-func SchemaPii(fields string) {
-	schemaLoader := gojsonschema.NewReferenceLoader("file:///Users/bmooijekind/Projects/go/src/github.com/bjornm82/json-schema/schemas/pii.json")
-	documentLoader := gojsonschema.NewStringLoader(fields)
+type Replace struct {
+	Type     string `json:"type"`
+	NewValue string `json:"new_value"`
+}
 
-	i, err := schemaLoader.LoadJSON()
-	log.Println(err)
-	log.Println(i)
+type Hash struct {
+	Type     string `json:"type"`
+	HashType string `json:"hash_type"`
+}
 
-	result, err := gojsonschema.Validate(schemaLoader, documentLoader)
-	if err != nil {
-		panic(err.Error())
+type Redact struct {
+	Type string `json:"type"`
+}
+
+type None struct {
+	Type string `json:"type"`
+}
+
+func (n *None) Marshal() ([]byte, error) {
+	return json.Marshal(n)
+}
+
+func (p *PiiObject) Unmarshal(b []byte) error {
+	if err := json.Unmarshal(b, p); err != nil {
+		return err
+	}
+	config := &mapstructure.DecoderConfig{
+		TagName: "json",
 	}
 
-	if result.Valid() {
-		fmt.Printf("The document is valid\n")
-	} else {
-		fmt.Printf("The document is not valid. see errors :\n")
-		for _, desc := range result.Errors() {
-			fmt.Printf("- %s\n", desc)
+	switch p.Anonymise["type"] {
+	case "mask":
+		var m Mask
+		config.Result = &m
+		decoder, err := mapstructure.NewDecoder(config)
+		if err != nil {
+			return err
 		}
+		if err := decoder.Decode(p.Anonymise); err != nil {
+			return err
+		}
+
+		p.Source = &m
+	case "none":
+		var n None
+		config.Result = &n
+		decoder, err := mapstructure.NewDecoder(config)
+		if err != nil {
+			return err
+		}
+		if err := decoder.Decode(p.Anonymise); err != nil {
+			return err
+		}
+
+		p.Source = &n
 	}
+
+	return nil
+}
+
+func (p *Pii) Validate(byteObject []byte) (bool, error) {
+	return validate(PiiSchemaPath, byteObject)
 }

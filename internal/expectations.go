@@ -32,7 +32,10 @@ package internal
 // Sets and ranges
 // expect_column_values_to_be_in_set
 // expect_column_values_to_not_be_in_set
-// expect_column_values_to_be_between *
+// expect_column_values_to_be_between
+// - column: string
+// - min_value: integer
+// - max_value: integer
 // expect_column_values_to_be_increasing
 // expect_column_values_to_be_decreasing
 

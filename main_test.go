@@ -1,5 +1,7 @@
 package main
 
-func TestAll() {
+import "testing"
+
+func TestAll(t *testing.T) {
 
 }

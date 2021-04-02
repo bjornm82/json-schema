@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "#baseSchema",
+  "$id": "#source",
   "title": "schema for an source entry",
   "type": "object",
   "required": [
@@ -9,8 +9,8 @@
     "fields"
   ],
   "properties": {
-    "fields": { "$ref": "fieldSchema.json#fieldSchema" },
-    "data": { "$ref": "dataSchema.json#dataSchema" },
+    "fields": { "$ref": "field.json#field" },
+    "data": { "$ref": "data.json#data" },
     "config": {
       "type": "object",
       "oneOf": [

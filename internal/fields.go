@@ -15,7 +15,7 @@ func (a *Avro) Unmarshal(b []byte) error {
 }
 
 func Schema(fields string) {
-	schemaLoader := gojsonschema.NewReferenceLoader("file:///Users/bmooijekind/Projects/go/src/github.com/bjornm82/json-schema/schemas/fieldSchema.json")
+	schemaLoader := gojsonschema.NewReferenceLoader("file:///Users/bmooijekind/Projects/go/src/github.com/bjornm82/json-schema/schemas/field.json")
 	documentLoader := gojsonschema.NewStringLoader(fields)
 
 	result, err := gojsonschema.Validate(schemaLoader, documentLoader)
